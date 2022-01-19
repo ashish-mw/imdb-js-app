@@ -11,20 +11,20 @@
   <div class="container">
     <h1>Imdb - Find and add movies</h1>
 
-    <div id="add-movies" class="">
+    <div id="add-movies" class="d-none">
       <button id="show-movies-btn">Show movies</button>
       <h3>Add a new movie</h3>
 
       <form id="add-movie-form">
-        <div>
+        <div class="m-t-sm">
           <label for="movie-name">Name</label>
           <input type="text" name="movie-name" id="movie-name" />
         </div>
-        <div>
+        <div class="m-t-sm">
           <label for="movie-year">Year</label>
           <input type="number" name="movie-year" id="movie-year" />
         </div>
-        <div>
+        <div class="m-t-sm">
           <label for="movie-rating">Rating</label>
           <select name="movie-rating" id="movie-rating">
             <option value="1">1 star</option>
@@ -34,30 +34,30 @@
             <option value="5">5 stars</option>
           </select>
         </div>
-        <div>
+        <div class="m-t-sm">
           <label for="movie-genre">Genre</label>
           <input type="text" name="movie-genre" id="movie-genre" />
         </div>
 
-        <div>
+        <div class="m-t-sm">
           <h4>Image</h4>
           <div>
             <label for="movie-image-url">Image url</label>
             <input type="text" name="movie-image-url" id="movie-image-url" />
           </div>
-          <div>
+          <div class="m-t-sm">
             <label for="movie-image-alt">Image alt</label>
             <input type="text" name="movie-image-alt" id="movie-image-alt" />
           </div>
         </div>
 
-        <div>
+        <div class="m-t-sm">
           <input type="submit" value="➕ Add new movie" />
         </div>
       </form>
     </div>
 
-    <div id="all-movies" class="d-none">
+    <div id="all-movies" class="">
       <button id="add-movies-btn">Add a new movie</button>
       <h3>Available movies</h3>
       <div id="movie-list" class="list">

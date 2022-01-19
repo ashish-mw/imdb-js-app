@@ -79,7 +79,11 @@ function createMovieInAPI(movie) {
     })
     .then(function (data) {
       console.log("API success");
-      console.log(data);
+      getMoviesFromAPI()
+      const el1 = document.querySelector("#all-movies");
+    el1.classList.remove("d-none");
+    const el2 = document.querySelector("#add-movies");
+    el2.classList.add("d-none");
     });
 }
 
