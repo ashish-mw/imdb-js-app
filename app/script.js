@@ -66,7 +66,7 @@ function getMoviesFromAPI() {
     });
 }
 
-function createMovieInAPI(movie) {
+function createMovieInAPI(movie, form) {
   fetch("http://localhost:1337/api/movies", {
     method: "POST",
     headers: {
@@ -79,31 +79,63 @@ function createMovieInAPI(movie) {
     })
     .then(function (data) {
       console.log("API success");
-      getMoviesFromAPI()
-      const el1 = document.querySelector("#all-movies");
-    el1.classList.remove("d-none");
-    const el2 = document.querySelector("#add-movies");
-    el2.classList.add("d-none");
+      setMessage("Your movie was added!", "success");
+      clearMessages();
+      form.reset();
+      getMoviesFromAPI();
+      showMovies();
+    })
+    .catch(function (error) {
+      setMessage("Could not add new movie. Try again!", "error");
+      clearMessages();
     });
+}
+
+function clearMessages() {
+  setTimeout(function () {
+    const el = document.querySelector("#messages");
+    el.innerHTML = "";
+    el.classList.remove("error");
+    el.classList.remove("success");
+  }, 5000);
+}
+
+function setMessage(message, type) {
+  const el = document.querySelector("#messages");
+  el.innerHTML = message;
+
+  if (type == "error") {
+    el.classList.add("error");
+  } else {
+    el.classList.add("success");
+  }
+}
+
+function showAddMovieForm() {
+  const el1 = document.querySelector("#all-movies");
+  el1.classList.add("d-none");
+  const el2 = document.querySelector("#add-movies");
+  el2.classList.remove("d-none");
+}
+
+function showMovies() {
+  const el1 = document.querySelector("#all-movies");
+  el1.classList.remove("d-none");
+  const el2 = document.querySelector("#add-movies");
+  el2.classList.add("d-none");
 }
 
 function hookButtons() {
   // add-movies-btn
   const addBtn = document.querySelector("#add-movies-btn");
   addBtn.addEventListener("click", function () {
-    const el1 = document.querySelector("#all-movies");
-    el1.classList.add("d-none");
-    const el2 = document.querySelector("#add-movies");
-    el2.classList.remove("d-none");
+    showAddMovieForm();
   });
 
   // show-movies-btn
   const showMoviesBtn = document.querySelector("#show-movies-btn");
   showMoviesBtn.addEventListener("click", function () {
-    const el1 = document.querySelector("#all-movies");
-    el1.classList.remove("d-none");
-    const el2 = document.querySelector("#add-movies");
-    el2.classList.add("d-none");
+    showMovies();
   });
 }
 
@@ -136,7 +168,7 @@ function hookAddMovieForm() {
       },
     };
 
-    createMovieInAPI(movie);
+    createMovieInAPI(movie, form);
   });
 }
 
